@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import { format } from "util";
+import React from "react";
 
 class StorePicker extends React.Component {
   render() {
