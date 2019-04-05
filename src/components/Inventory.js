@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import FishForm from './Inventory/Form';
 
-class Order extends Component {
-    render() { 
+class Inventory extends Component {
+    render() {
         return (
-            <div className="inventory">
-                Inventory
-            </div>
+          <div className="inventory">
+            <h2>Inventory</h2>
+                <FishForm addToInventory={this.props.addToInventory} />
+          </div>
         );
     }
 }
- 
-export default Order;
+
+export default Inventory;

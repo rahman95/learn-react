@@ -5,17 +5,29 @@ import Inventory from './Inventory';
 
 
 class App extends Component {
-    render() { 
+    state = {
+        inventory: [],
+        order: {}
+    };
+
+    addToInventory = (fish) => {
+        const inventory = [ ...this.state.inventory ];
+        inventory.push(fish);
+
+        this.setState({ inventory });
+    };
+
+    render() {
         return (
-           <div className="catch-of-the-day">
+          <div className="catch-of-the-day">
             <div className="menu">
-                <Header tagline="Fresh Seafood Market" />
+              <Header tagline="Fresh Seafood Market" />
             </div>
             <Order />
-            <Inventory />
-           </div>
+            <Inventory addToInventory={this.addToInventory} />
+          </div>
         );
     }
 }
- 
+
 export default App;
