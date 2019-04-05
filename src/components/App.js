@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Header from './Header';
+import Menu from './Menu';
 import Order from './Order';
 import Inventory from './Inventory';
 import sampleData from '../sample-fishes';
@@ -29,6 +30,7 @@ class App extends Component {
           <div className="catch-of-the-day">
             <div className="menu">
               <Header tagline="Fresh Seafood Market" />
+              <Menu inventory={this.state.inventory} />
             </div>
             <Order />
             <Inventory
