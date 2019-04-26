@@ -3,7 +3,7 @@ import { formatPrice } from '../../helpers';
 
 export default class Fish extends Component {
   render() {
-    const { name, desc, price, status, image} = this.props.data;
+    const { id, name, desc, price, status, image} = this.props.data;
     const isAvailable = (status === 'available');
 
     return (
@@ -11,12 +11,12 @@ export default class Fish extends Component {
         <img src={image} alt={name} />
         <h3 className="fish-name">
           {name}
-          <span className="price">
-            {formatPrice(price)}
-          </span>
+          <span className="price">{formatPrice(price)}</span>
         </h3>
         <p>{desc}</p>
-        <button disabled={!isAvailable}>{isAvailable ? 'Add To Cart' : 'Sold Out!'}</button>
+        <button disabled={!isAvailable} onClick={() => this.props.addToOrder(id)}>
+          {isAvailable ? "Add To Cart" : "Sold Out!"}
+        </button>
       </li>
     );
   }

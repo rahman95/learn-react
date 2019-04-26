@@ -6,7 +6,13 @@ class Menu extends Component {
   render() {
     const items = [];
     _.forEach(this.props.inventory, (item, key) => {
-      items.push(<Fish key={key} data={item}/>);
+      items.push(
+        <Fish
+          key={key}
+          data={item}
+          addToOrder={this.props.addToOrder}
+        />
+      );
     });
 
     return (
