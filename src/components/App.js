@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import uniqueSlug from "unique-slug";
+import base from '../base';
 import Header from './Header';
 import Menu from './Menu';
 import Order from './Order';
 import Inventory from './Inventory';
 import sampleData from '../sample-fishes';
-import uniqueSlug from "unique-slug";
 
 class App extends Component {
     state = {
         inventory: [],
         order: {}
     };
+
+    componentDidMount() {
+      const { params } = this.props.match
+      this.ref = base.syncState(`${params.match}/fishes`, {
+        context: this,
+        state: "inventory"
+      });
+    }
 
     addToInventory = (fish) => {
         const inventory = [ ...this.state.inventory ];
