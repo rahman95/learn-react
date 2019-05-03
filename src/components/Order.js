@@ -23,7 +23,7 @@ class Order extends Component {
 
         return _.reduce(order, (total, value, key) => {
             const fish = _.find(inventory, { id: key });
-            const isAvailable = fish.status === "available";
+            const isAvailable = fish && fish.status === "available";
             const quantity = value;
 
             if(! isAvailable) {

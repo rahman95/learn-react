@@ -3,8 +3,13 @@ import { formatPrice } from "../../helpers";
 
 export default class Item extends Component {
   render() {
-    const { quantity } = this.props;
-    const { name, price, status } = this.props.fish;
+    const { quantity, fish } = this.props;
+
+    if(! fish) {
+      return null;
+    }
+
+    const { name, price, status } = fish;
     const isAvailable = status === "available";
     const total = (quantity * price);
 
