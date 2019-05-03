@@ -45,6 +45,15 @@ class App extends Component {
         this.setState({ inventory });
     };
 
+    updateInventory = (fish) => {
+        const inventory = [ ...this.state.inventory ];
+        const index = _.findIndex(inventory, { id: fish.id });
+
+        inventory[index] = fish;
+
+        this.setState({ inventory });
+    };
+
     loadSampleInventory = () => {
         const items = _.toArray(sampleData)
           .map((item) => {
@@ -73,7 +82,9 @@ class App extends Component {
             </div>
             <Order inventory={this.state.inventory} order={this.state.order} />
             <Inventory
+              inventory={this.state.inventory}
               addToInventory={this.addToInventory}
+              updateInventory={this.updateInventory}
               loadSampleInventory={this.loadSampleInventory}
             />
           </div>

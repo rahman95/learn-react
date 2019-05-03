@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class AddForm extends Component {
   //refs
   name = React.createRef();
   price = React.createRef();
@@ -40,4 +40,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default AddForm;
