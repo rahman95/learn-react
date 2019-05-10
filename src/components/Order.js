@@ -12,7 +12,12 @@ class Order extends Component {
             const fish = _.find(inventory, {id: key});
             const quantity = value;
 
-            items.push(<Item key={key} fish={fish} quantity={quantity} />)
+            items.push(<Item
+                key={key}
+                fish={fish}
+                quantity={quantity}
+                removeFromOrder={this.props.removeFromOrder}
+            />)
         })
 
         return items;

@@ -24,7 +24,8 @@ class App extends Component {
 
       this.ref = base.syncState(`${key}/inventory`, {
         context: this,
-        state: "inventory"
+        state: "inventory",
+        asArray: true,
       });
     }
 
@@ -39,20 +40,29 @@ class App extends Component {
     }
 
     addToInventory = (fish) => {
-        const inventory = [ ...this.state.inventory ];
-        inventory.push({ id: uniqueSlug(fish.name), ...fish });
+      const inventory = [ ...this.state.inventory ];
+      inventory.push({ id: uniqueSlug(fish.name), ...fish });
 
-        this.setState({ inventory });
+      this.setState({ inventory });
     };
 
     updateInventory = (fish) => {
-        const inventory = [ ...this.state.inventory ];
-        const index = _.findIndex(inventory, { id: fish.id });
+      const inventory = [ ...this.state.inventory ];
+      const index = _.findIndex(inventory, { id: fish.id });
 
-        inventory[index] = fish;
+      inventory[index] = fish;
 
-        this.setState({ inventory });
+      this.setState({ inventory });
     };
+
+    deleteFromIntventory = (fish) => {
+      const inventory = [...this.state.inventory];
+      const index = _.findIndex(inventory, { id: fish.id });
+
+      inventory[index] = null;
+
+      this.setState({ inventory });
+    }
 
     loadSampleInventory = () => {
         const items = _.toArray(sampleData)
@@ -70,6 +80,13 @@ class App extends Component {
       this.setState({ order });
     }
 
+    removeFromOrder = (key) => {
+      const order = { ...this.state.order }
+      delete order[key]
+
+      this.setState({ order });
+    }
+
     render() {
         return (
           <div className="catch-of-the-day">
@@ -80,11 +97,16 @@ class App extends Component {
                 addToOrder={this.addToOrder}
               />
             </div>
-            <Order inventory={this.state.inventory} order={this.state.order} />
+            <Order
+              inventory={this.state.inventory}
+              order={this.state.order}
+              removeFromOrder={this.removeFromOrder}
+            />
             <Inventory
               inventory={this.state.inventory}
               addToInventory={this.addToInventory}
               updateInventory={this.updateInventory}
+              deleteFromIntventory={this.deleteFromIntventory}
               loadSampleInventory={this.loadSampleInventory}
             />
           </div>

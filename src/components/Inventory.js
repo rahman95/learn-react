@@ -4,8 +4,17 @@ import EditForm from './Inventory/EditForm';
 
 class Inventory extends Component {
     renderInventory = () => {
+      if (! this.props.inventory.length) {
+        return null;
+      }
+
       return this.props.inventory.map((fish) => {
-        return <EditForm key={fish.id} item={fish} updateInventory={this.props.updateInventory}></EditForm>
+        return <EditForm
+            key={fish.id}
+            item={fish}
+            updateInventory={this.props.updateInventory}
+            deleteFromIntventory={this.props.deleteFromIntventory}
+          ></EditForm>
       });
     }
 

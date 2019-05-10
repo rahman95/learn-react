@@ -3,6 +3,10 @@ import { formatPrice } from '../../helpers';
 
 export default class Fish extends Component {
   render() {
+    if(! this.props.data) {
+      return null;
+    }
+
     const { id, name, desc, price, status, image} = this.props.data;
     const isAvailable = (status === 'available');
 

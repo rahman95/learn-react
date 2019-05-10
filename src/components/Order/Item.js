@@ -9,7 +9,7 @@ export default class Item extends Component {
       return null;
     }
 
-    const { name, price, status } = fish;
+    const { id, name, price, status } = fish;
     const isAvailable = status === "available";
     const total = (quantity * price);
 
@@ -25,6 +25,7 @@ export default class Item extends Component {
       <li>
         {quantity} lbs {name}
         {formatPrice(total)}
+        <button onClick={() => this.props.removeFromOrder(id)}>&times;</button>
       </li>
     );
   }

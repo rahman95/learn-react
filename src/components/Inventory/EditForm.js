@@ -25,6 +25,7 @@ class EditForm extends Component {
         </select>
         <textarea name="desc" value={desc} placeholder="Desc" onChange={this.handleInput} />
         <input type="text" name="image" value={image} placeholder="Image" onChange={this.handleInput} />
+        <button onClick={() => this.props.deleteFromIntventory(this.props.item)}>Remove Button</button>
       </div>
     );
   }
