@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TransitionGroup, CSSTransition}  from 'react-transition-group';
 import _ from 'lodash';
 import { formatPrice } from "../helpers";
 import Item from "./Order/Item";
@@ -12,12 +13,16 @@ class Order extends Component {
             const fish = _.find(inventory, {id: key});
             const quantity = value;
 
-            items.push(<Item
-                key={key}
-                fish={fish}
-                quantity={quantity}
-                removeFromOrder={this.props.removeFromOrder}
-            />)
+            items.push(
+                <CSSTransition classNames="order" key={key} timeout={{ enter: 500, exit: 500 }}>
+                    <Item
+                        key={key}
+                        fish={fish}
+                        quantity={quantity}
+                        removeFromOrder={this.props.removeFromOrder}
+                    />
+                </CSSTransition>
+            );
         })
 
         return items;
@@ -42,10 +47,14 @@ class Order extends Component {
         return (
           <div className="order-wrap">
             <h2>Order</h2>
-            <ul className="order">{this.renderItems()}</ul>
-            <div className="total">
-              Total: <strong>{formatPrice(this.renderTotal())}</strong>
-            </div>
+            <ul className="order">
+                <TransitionGroup>
+                    {this.renderItems()}
+                </TransitionGroup>
+                <li className="total">
+                    Total: <strong>{formatPrice(this.renderTotal())}</strong>
+                </li>
+            </ul>
           </div>
         );
     }

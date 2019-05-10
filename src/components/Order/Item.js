@@ -23,9 +23,18 @@ export default class Item extends Component {
 
     return (
       <li>
-        {quantity} lbs {name}
-        {formatPrice(total)}
-        <button onClick={() => this.props.removeFromOrder(id)}>&times;</button>
+        <span>
+          <span className="count">
+            <span>{quantity}</span>
+          </span>
+          lbs {name}
+          <button onClick={() => this.props.removeFromOrder(id)}>
+            &times;
+          </button>
+        </span>
+        <span className="price">
+          {formatPrice(total)}
+        </span>
       </li>
     );
   }
