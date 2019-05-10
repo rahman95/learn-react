@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { formatPrice } from "../../helpers";
 
 export default class Item extends Component {
+
+  handleUpdate = (e) => {
+    const key = this.props.fish.id;
+    const quantity = e.currentTarget.value;
+
+    this.props.updateOrder(key, quantity)
+  }
+
   render() {
     const { quantity, fish } = this.props;
 
@@ -25,7 +33,7 @@ export default class Item extends Component {
       <li>
         <span>
           <span className="count">
-            <span>{quantity}</span>
+            <input type="number" min="1" max="99" value={quantity} onChange={this.handleUpdate} />
           </span>
           lbs {name}
           <button onClick={() => this.props.removeFromOrder(id)}>

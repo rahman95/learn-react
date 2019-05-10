@@ -20,6 +20,7 @@ class Order extends Component {
                         fish={fish}
                         quantity={quantity}
                         removeFromOrder={this.props.removeFromOrder}
+                        updateOrder={this.props.updateOrder}
                     />
                 </CSSTransition>
             );
