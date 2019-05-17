@@ -1,11 +1,27 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { formatPrice } from "../../helpers";
 
 export default class Item extends Component {
+  static propTypes = {
+    fish: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }),
+    quantity: PropTypes.number.isRequired,
+    updateOrder: PropTypes.func.isRequired,
+    removeFromOrder: PropTypes.func.isRequired
+  };
 
   handleUpdate = (e) => {
     const key = this.props.fish.id;
     const quantity = e.currentTarget.value;
+
+    if(quantity < 1 || quantity > 99) {
+      return;
+    }
 
     this.props.updateOrder(key, quantity)
   }

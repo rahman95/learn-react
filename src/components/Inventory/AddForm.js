@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddForm extends Component {
   //refs
@@ -7,6 +8,10 @@ class AddForm extends Component {
   status = React.createRef();
   desc = React.createRef();
   image = React.createRef();
+
+  static propTypes = {
+    addToInventory: PropTypes.func.isRequired,
+  };
 
   submit = (e) => {
     e.preventDefault();
