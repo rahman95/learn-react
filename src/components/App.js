@@ -111,6 +111,7 @@ class App extends Component {
               removeFromOrder={this.removeFromOrder}
             />
             <Inventory
+              storeId={this.props.match.params.storeId}
               inventory={this.state.inventory}
               addToInventory={this.addToInventory}
               updateInventory={this.updateInventory}

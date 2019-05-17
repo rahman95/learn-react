@@ -252,6 +252,12 @@ h2 {
 h3 {
   font-size: 3rem;
 }
+.d-block {
+  display: block;
+}
+.py-1 {
+  padding: 1rem 0;
+}
 header.top {
   text-align: center;
 }
@@ -590,11 +596,11 @@ input[type=submit].twitter {
 }
 button.github,
 input[type=submit].github {
-  background: #82d465;
+  background: #545454;
 }
 button.github:after,
 input[type=submit].github:after {
-  background: #5cc437;
+  background: #434343;
 }
 button.facebook,
 input[type=submit].facebook {
@@ -611,6 +617,11 @@ input[type=submit].twitter {
 button.twitter:after,
 input[type=submit].twitter:after {
   background: #2c8dd0;
+}
+button svg,
+input[type=submit] svg {
+  display: inline-block;
+  fill: currentColor;
 }
 .store-selector {
   background: #fff;

@@ -1,6 +1,11 @@
 // Import all partials
 @require './_*.styl'
 
+.d-block
+  display: block;
+
+.py-1
+  padding: 1rem 0;
 
 header.top
   text-align center
@@ -269,9 +274,9 @@ button, input[type=submit]
     padding 2rem
 
   &.github
-    background #82D465
+    background #545454
     &:after
-      background darken(#82D465, 20%)
+      background darken(#545454, 20%)
 
   &.facebook
     background #3864A3
@@ -282,6 +287,10 @@ button, input[type=submit]
     background #5EA9DD
     &:after
       background darken(#5EA9DD, 20%)
+
+  svg
+    display: inline-block;
+    fill: currentColor;
 
 
 // Store Selector
