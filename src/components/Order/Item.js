@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { formatPrice } from "../../helpers";
 
-export default class Item extends Component {
+class Item extends Component {
   static propTypes = {
     fish: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -63,3 +63,5 @@ export default class Item extends Component {
     );
   }
 }
+
+export default Item;
