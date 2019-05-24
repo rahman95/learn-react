@@ -28,6 +28,7 @@
     "eject": "react-scripts eject",
     "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
     "now-build": "npm run build && mv build dist",
+    "netlify-build": "npm run build && netlify deploy",
     "styles:watch": "npm run styles -- -w",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

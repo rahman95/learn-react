@@ -65,7 +65,7 @@ class EditForm extends Component {
         <button
           onClick={() => this.props.deleteFromIntventory(this.props.item)}
         >
-          Remove Button
+          Remove
         </button>
       </div>
     );

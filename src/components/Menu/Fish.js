@@ -15,6 +15,13 @@ class Fish extends Component {
     addToOrder: PropTypes.func.isRequired,
   };
 
+  handleImg = (e) => {
+    const img = e.currentTarget;
+    const defaultImg = "/images/no_image.png";
+
+    img.src = defaultImg;
+  }
+
   render() {
     if(! this.props.data) {
       return null;
@@ -25,7 +32,7 @@ class Fish extends Component {
 
     return (
       <li className="menu-fish">
-        <img src={image} alt={name} />
+        <img src={image} alt={name} onError={this.handleImg}/>
         <h3 className="fish-name">
           {name}
           <span className="price">{formatPrice(price)}</span>
