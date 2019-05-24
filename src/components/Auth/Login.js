@@ -29,6 +29,14 @@ export default class Login extends Component {
           </svg>
           <span className="d-block">Github</span>
         </button>
+
+        <button
+          className="guest"
+          onClick={() => this.props.authenticate("Guest")}
+        >
+          <span className="d-block">Continue as Guest</span>
+        </button>
+
       </nav>
     );
   }

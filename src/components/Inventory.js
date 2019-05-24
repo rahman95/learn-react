@@ -26,6 +26,7 @@ class Inventory extends Component {
   };
 
   state = {
+    provider: null,
     uid: null,
     owner: null
   };
@@ -38,7 +39,27 @@ class Inventory extends Component {
     });
   }
 
+  guestLogout = async () => {
+    if(this.isGuest()) {
+      await base.post(`${this.props.storeId}`, {
+        data: null
+      });
+
+      this.setState({
+        provider: null
+      });
+    }
+  }
+
   authenticate = provider => {
+    this.setState({
+      provider: provider
+    });
+
+    if (provider === 'Guest') {
+      return;
+    }
+
     const authProvider = new firebase.auth.GithubAuthProvider();
     firebaseApp
       .auth()
@@ -70,12 +91,16 @@ class Inventory extends Component {
   };
 
   isLoggedIn = () => {
-    return !!this.state.uid;
+    return this.isGuest() || !!this.state.uid;
   };
 
   isOwner = () => {
-    return this.isLoggedIn() && this.state.uid === this.state.owner;
+    return this.isGuest() || (this.isLoggedIn() && this.state.uid === this.state.owner);
   };
+
+  isGuest = () => {
+    return this.state.provider === 'Guest';
+  }
 
   renderInventory = () => {
     if (!this.props.inventory.length) {
@@ -95,15 +120,17 @@ class Inventory extends Component {
   };
 
   render() {
-    if (!this.isLoggedIn()) {
+    const logoutButton = <Logout logout={this.isGuest() ? this.guestLogout : this.logout} />
+
+    if (! this.isLoggedIn()) {
       return <Login authenticate={this.authenticate} />;
     }
 
-    if (!this.isOwner()) {
+    if (! this.isOwner()) {
       return (
         <div>
           <p>You cannot manage this store</p>
-          <Logout logout={this.logout} />
+          {logoutButton}
         </div>
       );
     }
@@ -111,7 +138,7 @@ class Inventory extends Component {
     return (
       <div className="inventory">
         <h2>Inventory</h2>
-        <Logout logout={this.logout} />
+        {logoutButton}
         <AddForm addToInventory={this.props.addToInventory} />
         <button onClick={this.props.loadSampleInventory}>
           Load Sample Data

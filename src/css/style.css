@@ -618,6 +618,11 @@ button.twitter:after,
 input[type=submit].twitter:after {
   background: #2c8dd0;
 }
+button.guest,
+input[type=submit].guest {
+  margin: 0 auto;
+  display: block;
+}
 button svg,
 input[type=submit] svg {
   display: inline-block;

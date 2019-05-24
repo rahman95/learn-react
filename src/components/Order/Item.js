@@ -17,7 +17,11 @@ class Item extends Component {
 
   handleUpdate = (e) => {
     const key = this.props.fish.id;
-    const quantity = e.currentTarget.value;
+    let quantity = e.currentTarget.value;
+
+    if (quantity < 1) {
+      quantity = 1;
+    }
 
     if(quantity < 1 || quantity > 99) {
       return;
