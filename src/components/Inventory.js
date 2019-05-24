@@ -39,18 +39,6 @@ class Inventory extends Component {
     });
   }
 
-  guestLogout = async () => {
-    if(this.isGuest()) {
-      await base.post(`${this.props.storeId}`, {
-        data: null
-      });
-
-      this.setState({
-        provider: null
-      });
-    }
-  }
-
   authenticate = provider => {
     this.setState({
       provider: provider
@@ -88,7 +76,21 @@ class Inventory extends Component {
     this.setState({
       uid: null
     });
+
+    await this.cleanUp();
   };
+
+  cleanUp = async () => {
+    if (this.isGuest()) {
+      await base.post(`${this.props.storeId}`, {
+        data: null
+      });
+
+      this.setState({
+        provider: null
+      });
+    }
+  }
 
   isLoggedIn = () => {
     return this.isGuest() || !!this.state.uid;
@@ -120,7 +122,7 @@ class Inventory extends Component {
   };
 
   render() {
-    const logoutButton = <Logout logout={this.isGuest() ? this.guestLogout : this.logout} />
+    const logoutButton = <Logout logout={this.isGuest() ? this.cleanUp : this.logout} />
 
     if (! this.isLoggedIn()) {
       return <Login authenticate={this.authenticate} />;
